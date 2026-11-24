@@ -1,0 +1,17 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$roomId": {
+        ".read": "auth != null && $roomId.matches(/^[A-Za-z0-9_-]{1,64}$/)",
+        "updates": {
+          "$updateId": {
+            ".write": "auth != null && $roomId.matches(/^[A-Za-z0-9_-]{1,64}$/)",
+            ".validate": "newData.isString() && newData.val().length <= 200000"
+          }
+        }
+      }
+    }
+  }
+}
